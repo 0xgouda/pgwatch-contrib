@@ -60,13 +60,13 @@ jobs:
 
     - name: gRPC Golang Tests
       run: |
-        cd gRPC_sinks
+        cd rpc
         go generate ./sinks/pb
         go test -timeout 20m -failfast -v -coverprofile=profile.cov ./...
 
     - name: gRPC Python Tests
       run: |
-        cd gRPC_sinks
+        cd rpc
         python3 -m grpc_tools.protoc -I sinks/pb --python_out=cmd/pyiceberg_receiver --grpc_python_out=cmd/pyiceberg_receiver sinks/pb/pgwatch.proto
         pytest
 
